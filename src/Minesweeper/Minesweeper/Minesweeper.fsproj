@@ -44,6 +44,9 @@
   <ItemGroup>
     <None Include="Script.fsx" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Minesweeper.fs" />
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
