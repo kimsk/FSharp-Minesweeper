@@ -11,19 +11,13 @@ module Board =
         | Mine
 
     let getMinePositions num gridSize =
-        let rec getRandomPositions (positions:(int*int) list) =
-            let newPos = r.Next(fst(gridSize)), r.Next(snd(gridSize))
-
-            let newPositions = 
-                if positions |> List.exists ((=)newPos) then
-                    positions
-                else
-                    newPos::positions
-
-            if newPositions |> List.length = num then newPositions
+        let rec getRandomPositions (positions:Set<int*int>) =
+            let newPositions = positions |> Set.add  (r.Next(fst(gridSize)), r.Next(snd(gridSize)))
+            if newPositions |> Seq.length = num then 
+                newPositions |> List.ofSeq
             else getRandomPositions newPositions
         
-        getRandomPositions []
+        getRandomPositions Set.empty
 
     let createNewBoard mineNum gridSize =
         let mines = getMinePositions mineNum gridSize
